@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClinicaVeterinaraMobile.VetPage"
+             Title="Lista Medici">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Clicked="OnAddVetClicked" />
+    </ContentPage.ToolbarItems>
+
+    <ListView x:Name="listView" Margin="20" ItemSelected="OnListViewItemSelected">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextCell Text="{Binding VetName}" 
+                          Detail="{Binding Specialization}" />
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

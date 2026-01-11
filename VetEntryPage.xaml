@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClinicaVeterinaraMobile.VetEntryPage"
+             Title="Detalii Medic">
+    <VerticalStackLayout Spacing="20" Margin="20">
+
+        <Label Text="Nume Medic" FontAttributes="Bold" />
+        <Entry Text="{Binding VetName}" Placeholder="Dr. Popescu" />
+
+        <Label Text="Specializare" FontAttributes="Bold" />
+        <Entry Text="{Binding Specialization}" Placeholder="Veterinar" />
+        <Label Text="Adresa Cabinetului" FontAttributes="Bold" />
+        <Entry Text="{Binding AdresaCabinet}" Placeholder="Ex: Str. Libertății nr 1, Timișoara" />
+
+        <Button Text="📍 Vezi pe Hartă"
+                Clicked="OnMapClicked"
+                BackgroundColor="DeepPink"
+                TextColor="White"
+                Margin="0,10,0,10"/>
+
+        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+            <Button Text="Salvează" Clicked="OnSaveButtonClicked" BackgroundColor="Pink" TextColor="White"/>
+            <Button Text="Șterge" Clicked="OnDeleteButtonClicked" BackgroundColor="DeepPink" TextColor="White"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

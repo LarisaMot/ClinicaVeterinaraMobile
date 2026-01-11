@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ClinicaVeterinaraMobile"
+             x:Class="ClinicaVeterinaraMobile.AppointmentEntryPage"
+             Title="Detalii Programare">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Margin="20">
+
+            <Label Text="Nume Pacient (Animal)" FontAttributes="Bold" />
+            <Entry Text="{Binding NumePacient}" Placeholder="Ex: Rex" />
+
+            <Label Text="Motivul Vizitei" FontAttributes="Bold" />
+            <Entry Text="{Binding Motiv}" Placeholder="Ex: Vaccin" />
+
+            <Label Text="Data și Ora" FontAttributes="Bold" />
+            <DatePicker Date="{Binding DataProgramare}" />
+
+            <Label Text="Alege Medicul" FontAttributes="Bold" />
+            <Picker x:Name="vetPicker"
+                    Title="Selectează un medic"
+                    ItemDisplayBinding="{Binding VetName}" />
+
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Button Text="Salvează" Clicked="OnSaveButtonClicked" BackgroundColor="HotPink" TextColor="White"/>
+                <Button Text="Șterge" Clicked="OnDeleteButtonClicked" BackgroundColor="DeepPink" TextColor="White"/>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
