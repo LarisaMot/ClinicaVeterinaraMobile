@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:ClinicaVeterinaraMobile"
              x:Class="ClinicaVeterinaraMobile.AppointmentEntryPage"
-             Title="Detalii Programare">
+             Title="Adaugă Programare">
 
     <ScrollView>
-        <VerticalStackLayout Spacing="20" Margin="20">
+        <VerticalStackLayout Spacing="15" Padding="20">
 
-            <Label Text="Nume Pacient (Animal)" FontAttributes="Bold" />
-            <Entry Text="{Binding NumePacient}" Placeholder="Ex: Rex" />
+            <Label Text="PACIENT (Animal)" FontAttributes="Bold" TextColor="#512BD4"/>
+            <Entry Text="{Binding NumePacient}" Placeholder="Ex: Rex, Pisica Mia" />
 
-            <Label Text="Motivul Vizitei" FontAttributes="Bold" />
-            <Entry Text="{Binding Motiv}" Placeholder="Ex: Vaccin" />
+            <Label Text="DATE STĂPÂN" FontAttributes="Bold" TextColor="#512BD4"/>
+            <Entry Text="{Binding NumeStapan}" Placeholder="Nume Proprietar" />
+            <Entry Text="{Binding TelefonStapan}" Placeholder="Telefon (pt contact)" Keyboard="Telephone"/>
 
-            <Label Text="Data și Ora" FontAttributes="Bold" />
+            <Label Text="DETALII VIZITĂ" FontAttributes="Bold" TextColor="#512BD4"/>
+            <Entry Text="{Binding Motiv}" Placeholder="Ex: Vaccin, Control, Operatie" />
+
+            <Label Text="Dată și Oră" />
             <DatePicker Date="{Binding DataProgramare}" />
+            <TimePicker Time="{Binding DataProgramare, Mode=TwoWay}" />
 
-            <Label Text="Alege Medicul" FontAttributes="Bold" />
-            <Picker x:Name="vetPicker"
-                    Title="Selectează un medic"
-                    ItemDisplayBinding="{Binding VetName}" />
+            <Label Text="MEDIC ALOCAT" FontAttributes="Bold" TextColor="#512BD4"/>
+            <Picker x:Name="vetPicker" Title="Alege Medicul" ItemDisplayBinding="{Binding VetName}" />
 
-            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                <Button Text="Salvează" Clicked="OnSaveButtonClicked" BackgroundColor="HotPink" TextColor="White"/>
-                <Button Text="Șterge" Clicked="OnDeleteButtonClicked" BackgroundColor="DeepPink" TextColor="White"/>
-            </HorizontalStackLayout>
+            <Button Text="SALVEAZA SI PLANIFICA" Clicked="OnSaveButtonClicked" BackgroundColor="HotPink" TextColor="White" Margin="0,20,0,0"/>
+            <Button Text="Sterge Programarea" Clicked="OnDeleteButtonClicked" BackgroundColor="DEEPPINK" TextColor="White"/>
 
         </VerticalStackLayout>
     </ScrollView>

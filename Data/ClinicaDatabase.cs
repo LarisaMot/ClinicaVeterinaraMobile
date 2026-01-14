@@ -32,10 +32,10 @@ namespace ClinicaVeterinaraMobile.Data
                             .FirstOrDefaultAsync();
         }
 
-        public async Task<List<Appointment>> GetAppointmentsAsync(int userId)
+        public async Task<List<Appointment>> GetAppointmentsAsync()
         {
             var appointments = await _database.Table<Appointment>()
-                                            .Where(a => a.UserId == userId)
+                                            .OrderBy(x => x.DataProgramare)
                                             .ToListAsync();
 
             var vets = await _database.Table<Vet>().ToListAsync();
@@ -43,14 +43,13 @@ namespace ClinicaVeterinaraMobile.Data
             foreach (var app in appointments)
             {
                 var mediculGasit = vets.FirstOrDefault(v => v.ID == app.VetID);
-
                 if (mediculGasit != null)
                 {
-                    app.VetDetails = mediculGasit.VetName + " - " + app.Motiv;
+                    app.VetDetails = $"La: {mediculGasit.VetName} ({mediculGasit.Specialization})";
                 }
                 else
                 {
-                    app.VetDetails = "Fără medic alocat - " + app.Motiv;
+                    app.VetDetails = "Fara medic alocat";
                 }
             }
 
@@ -59,14 +58,8 @@ namespace ClinicaVeterinaraMobile.Data
 
         public Task<int> SaveAppointmentAsync(Appointment appointment)
         {
-            if (appointment.ID != 0)
-            {
-                return _database.UpdateAsync(appointment);
-            }
-            else
-            {
-                return _database.InsertAsync(appointment);
-            }
+            if (appointment.ID != 0) return _database.UpdateAsync(appointment);
+            else return _database.InsertAsync(appointment);
         }
 
         public Task<int> DeleteAppointmentAsync(Appointment appointment)

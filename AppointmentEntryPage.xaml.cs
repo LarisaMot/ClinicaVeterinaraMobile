@@ -1,4 +1,5 @@
-using ClinicaVeterinaraMobile.Models;
+﻿using ClinicaVeterinaraMobile.Models;
+using Plugin.LocalNotification;
 
 namespace ClinicaVeterinaraMobile
 {
@@ -12,9 +13,9 @@ namespace ClinicaVeterinaraMobile
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
             var vets = await App.Database.GetVetsAsync();
             vetPicker.ItemsSource = vets;
+
             var appointment = (Appointment)BindingContext;
             if (appointment != null && appointment.VetID != 0)
             {
@@ -25,23 +26,36 @@ namespace ClinicaVeterinaraMobile
         async void OnSaveButtonClicked(object sender, EventArgs e)
         {
             var appointment = (Appointment)BindingContext;
-
-            if (string.IsNullOrWhiteSpace(appointment.NumePacient) || string.IsNullOrWhiteSpace(appointment.Motiv))
-            {
-                await DisplayAlert("Eroare", "Scrie numele pacientului si motivul!", "OK");
-                return;
-            }
-
             var selectedVet = vetPicker.SelectedItem as Vet;
+
             if (selectedVet == null)
             {
-                await DisplayAlert("Atentie", "Selecteaza un medic!", "OK");
+                await DisplayAlert("Eroare", "Trebuie sa aloci un medic!", "OK");
                 return;
             }
 
             appointment.VetID = selectedVet.ID;
-            appointment.UserId = Preferences.Get("CurrentUserId", 0);
+
+
             await App.Database.SaveAppointmentAsync(appointment);
+
+
+            if (appointment.DataProgramare > DateTime.Now)
+            {
+                var request = new NotificationRequest
+                {
+                    NotificationId = appointment.ID,
+                    Title = $"🔔 Urmeaza: {appointment.NumePacient}",
+                    Description = $"Stapan: {appointment.NumeStapan} ({appointment.TelefonStapan})\nLa Dr. {selectedVet.VetName}",
+                    Schedule = new NotificationRequestSchedule
+                    {
+
+                        NotifyTime = appointment.DataProgramare.AddMinutes(-15)
+                    }
+                };
+                await LocalNotificationCenter.Current.Show(request);
+            }
+
             await Navigation.PopAsync();
         }
 

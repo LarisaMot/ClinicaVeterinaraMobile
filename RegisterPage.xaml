@@ -4,9 +4,10 @@
              x:Class="ClinicaVeterinaraMobile.RegisterPage"
              Title="RegisterPage">
     <VerticalStackLayout Spacing="20" Padding="30" VerticalOptions="Center">
+        <Image Source="logo.jpg." HeightRequest="300" WidthRequest="300" HorizontalOptions="Center" Aspect="AspectFit" />
         <Entry x:Name="UsernameEntry" Placeholder="Username" />
         <Entry x:Name="PasswordEntry" Placeholder="Parola" IsPassword="True" />
-        <Button Text="Creeaza Cont" Clicked="OnRegisterClicked" BackgroundColor="#512BD4"/>
-        <Button Text="Anuleaza" Clicked="OnCancelClicked" BackgroundColor="Gray"/>
+        <Button Text="Creeaza Cont" Clicked="OnRegisterClicked" BackgroundColor="HotPink"/>
+        <Button Text="Am cont deja,inapoi la Login" Clicked="OnCancelClicked" BackgroundColor="Pink"/>
     </VerticalStackLayout>
 </ContentPage>

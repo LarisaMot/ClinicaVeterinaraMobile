@@ -14,7 +14,7 @@ namespace ClinicaVeterinaraMobile
         {
             base.OnAppearing();
 
-            
+
             var vets = await App.Database.GetVetsAsync();
             listView.ItemsSource = vets;
         }

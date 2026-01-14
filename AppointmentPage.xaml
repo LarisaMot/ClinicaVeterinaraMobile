@@ -4,21 +4,41 @@
              x:Class="ClinicaVeterinaraMobile.AppointmentPage"
              Title="Lista Programări">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="+" Clicked="OnAddAppointmentClicked" />
-    </ContentPage.ToolbarItems>
-
-    <StackLayout Margin="20">
+    <StackLayout Margin="20" Spacing="15">
         <SearchBar Placeholder="Caută pacient..."
-                   TextChanged="OnSearchBarTextChanged" 
-                   Margin="0,0,0,10" />
+                   TextChanged="OnSearchBarTextChanged" />
+        <Button Text="+ Adăugare pacient"
+                Clicked="OnAddAppointmentClicked"
+                BackgroundColor="#FF69B4" 
+                TextColor="White"
+                FontSize="20"
+                FontAttributes="Bold"
+                CornerRadius="25"
+                HeightRequest="60"
+                HorizontalOptions="Fill" />
         <ListView x:Name="listView" 
-                  Margin="20"
+                  HasUnevenRows="True"
+                  SeparatorVisibility="None"
                   ItemSelected="OnListViewItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding NumePacient}" 
-                              Detail="{Binding VetDetails}" />
+                    <ViewCell>
+                        <Frame Margin="0,5" 
+                               Padding="15" 
+                               CornerRadius="10" 
+                               HasShadow="True"
+                               BorderColor="#F0F0F0">
+                            <StackLayout>
+                                <Label Text="{Binding NumePacient}" 
+                                       FontSize="18" 
+                                       FontAttributes="Bold" 
+                                       TextColor="#512BD4" />
+                                <Label Text="{Binding VetDetails}" 
+                                       FontSize="14" 
+                                       TextColor="Gray" />
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

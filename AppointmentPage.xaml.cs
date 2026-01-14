@@ -15,10 +15,7 @@ namespace ClinicaVeterinaraMobile
         {
             base.OnAppearing();
 
-           
-            int userId = Preferences.Get("CurrentUserId", 0);
-
-            _allAppointments = await App.Database.GetAppointmentsAsync(userId);
+            _allAppointments = await App.Database.GetAppointmentsAsync();
 
             listView.ItemsSource = _allAppointments;
         }
@@ -50,7 +47,7 @@ namespace ClinicaVeterinaraMobile
 
             if (string.IsNullOrWhiteSpace(textCautat))
             {
-       
+
                 listView.ItemsSource = _allAppointments;
             }
             else
