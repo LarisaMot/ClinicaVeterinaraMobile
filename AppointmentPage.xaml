@@ -32,7 +32,7 @@
                                 <Label Text="{Binding NumePacient}" 
                                        FontSize="18" 
                                        FontAttributes="Bold" 
-                                       TextColor="#512BD4" />
+                                       TextColor="Pink" />
                                 <Label Text="{Binding VetDetails}" 
                                        FontSize="14" 
                                        TextColor="Gray" />
